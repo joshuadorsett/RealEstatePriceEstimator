@@ -1,3 +1,5 @@
+import os
+
 import joblib
 
 
@@ -6,12 +8,22 @@ class House:
     # constructor automatically calls the machine learning model's prediction and returns answer
     # to attributes
     # finally, the constructor then automatically stores the features and the target into database of users account
-    def __init__(self):
+    def __init__(self, CRIM, ZN, INDUS,	CHAS, NOX, RM, AGE,	DIS, RAD, TAX, PTRATIO, B, LSTAT):
         # house specs contains users arguments for the house
-        self.houseSpecs = [[]]
-        model = joblib.load('RealEstatePriceEstimator/ML/HousePricePrediction.joblib')
+        self.houseSpecs = [[CRIM, ZN, INDUS, CHAS, NOX, RM, AGE, DIS, RAD, TAX, PTRATIO, B, LSTAT]]
+        folder = './joblib_memmap'
+        try:
+            os.mkdir(folder)
+        except FileExistsError:
+            pass
+        model_filename = '/Users/joshuadorsett/PycharmProjects/RealEstatePriceEstimator/ML/HousePricePrediction.joblib'
+        model = joblib.load(model_filename)
         self.prediction = model.predict(self.houseSpecs)
 
-    # this returns the prediction attribute
-    def returnPrediction(self):
-        return self.prediction
+    # this returns the prediction attribute in dollar amount
+    def getPrediction(self):
+        return self.prediction[0][0] * 10000
+
+    # add house specs and prediction to data base with user ID
+    def save(self):
+        pass
