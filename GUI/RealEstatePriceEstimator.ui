@@ -47,7 +47,17 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="i1"/>
+       <widget class="QLineEdit" name="i0_2">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="maxLength">
+         <number>12</number>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QLabel" name="l1">
@@ -57,7 +67,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="i0"/>
+       <widget class="QLineEdit" name="i1"/>
       </item>
       <item>
        <widget class="QLabel" name="l2">
@@ -271,7 +281,7 @@
        <x>330</x>
        <y>100</y>
        <width>251</width>
-       <height>31</height>
+       <height>32</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -283,7 +293,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="predict_3">
+       <widget class="QPushButton" name="dele">
         <property name="text">
          <string>Delete</string>
         </property>
@@ -309,7 +319,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="prediction">
         <property name="text">
          <string>0</string>
         </property>
