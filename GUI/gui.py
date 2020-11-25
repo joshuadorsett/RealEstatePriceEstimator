@@ -1,4 +1,5 @@
 from PyQt5 import QtWidgets
+from GUI.graphs import ScatterPlot
 import sys
 
 from GUI.RealEstatePriceEstimator_ui import Ui_MainWindow
@@ -20,6 +21,8 @@ class Ui(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self._actionHandling()
+        sct = ScatterPlot(self.ui.qf3)
+        sct.plot()
 
     def _actionHandling(self):
         # find and assign buttons
