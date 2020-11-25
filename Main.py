@@ -9,6 +9,6 @@ print(user.getName(), " : ", user.getPassword())
 
 house = House(.28, 0.00, 11.69, 0.00, .624, 6.623, 94.05, 0.07, 5, 370, 19, 391, 3)
 
-prediction = house.getPrediction()
+prediction = house.getLinearPrediction()
 
 print(prediction)
