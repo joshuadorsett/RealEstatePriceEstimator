@@ -2,6 +2,8 @@ from PyQt5 import QtWidgets
 import pandas as pd
 import sys
 
+from pandas import DataFrame
+
 from GUI.RealEstatePriceEstimator_ui import Ui_MainWindow
 
 # use pyuic5 -o RealEstatePriceEstimator_ui.py RealEstatePriceEstimator.ui in the GUI folder every time you want to
@@ -21,24 +23,48 @@ class Ui(QtWidgets.QMainWindow):
         self._ui = Ui_MainWindow()
         self._ui.setupUi(self)
         self._actionHandling()
-        self.x = [6,5,3,6,4]
-        self.y = [9,3,5,2,6]
-        self._dfX = pd.read_csv("/Users/joshuadorsett/PycharmProjects/RealEstatePriceEstimator/ML/bostonWeights.csv")
-        self._dfY = pd.read_csv("/Users/joshuadorsett/PycharmProjects/RealEstatePriceEstimator/ML/bostonTarget.csv")
+        self._X = (pd.read_csv(
+            "/Users/joshuadorsett/PycharmProjects/RealEstatePriceEstimator/ML/bostonWeights.csv"))
+        self._Y = (pd.read_csv(
+            "/Users/joshuadorsett/PycharmProjects/RealEstatePriceEstimator/ML/bostonTarget.csv"))
+        # self.setStaticGraphData()
         self._graph1()
         self._graph2()
         self._graph3()
 
+    # def setStaticGraphData(self):
+    #     self.CRIME = []
+    #     self.AGE = []
+    #     self.IDK = []
+    #     self.TARGET = []
+    #     for l in x:
+    #         self.AGE.append(l[6])
+    #         self.CRIME.append(l[0])
+    #         self.IDK.append(l[4])
+    #     for l in y:
+    #         self.TARGET.append((l[0])*10000)
+
     def _graph1(self):
-        dfX = pd.read_csv("/Users/joshuadorsett/PycharmProjects/RealEstatePriceEstimator/ML/bostonWeights.csv")
-        dfY = pd.read_csv("/Users/joshuadorsett/PycharmProjects/RealEstatePriceEstimator/ML/bostonTarget.csv")
-        self._ui.widget.plot(self.x, self.y)
+        # set a new item to put int the widget
+        x = range(0, 10)
+        y = range(0, 20, 2)
+        self._ui.widget.canvas.ax.plot(x, y)
+        self._ui.widget.canvas.draw()
+
 
     def _graph2(self):
-        self._ui.widget_2.plot(self.x, self.y)
+        # set a new item to put int the widget
+        x = range(0, 10)
+        y = range(0, 20, 2)
+        self._ui.widget_2.canvas.ax.plot(x, y)
+        self._ui.widget_2.canvas.draw()
 
     def _graph3(self):
-        self._ui.widget_3.plot(self.x, self.y)
+        #     set a new item to put int the widget
+        x = range(0, 10)
+        y = range(0, 20, 2)
+        self._ui.widget_3.canvas.ax.plot(x, y)
+        self._ui.widget_3.canvas.draw()
 
 
     def _actionHandling(self):

@@ -216,10 +216,10 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_4">
       <item>
-       <widget class="PlotWidget" name="widget_2" native="true"/>
+       <widget class="MplWidget" name="widget_2" native="true"/>
       </item>
       <item>
-       <widget class="PlotWidget" name="widget" native="true"/>
+       <widget class="MplWidget" name="widget" native="true"/>
       </item>
      </layout>
     </widget>
@@ -297,7 +297,7 @@
       </item>
      </layout>
     </widget>
-    <widget class="PlotWidget" name="widget_3" native="true">
+    <widget class="MplWidget" name="widget_3" native="true">
      <property name="geometry">
       <rect>
        <x>169</x>
@@ -313,9 +313,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>PlotWidget</class>
+   <class>MplWidget</class>
    <extends>QWidget</extends>
-   <header>pyqtgraph</header>
+   <header>mplwidget</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

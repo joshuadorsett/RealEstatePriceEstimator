@@ -126,10 +126,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
         self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.widget_2 = PlotWidget(self.horizontalLayoutWidget_2)
+        self.widget_2 = MplWidget(self.horizontalLayoutWidget_2)
         self.widget_2.setObjectName("widget_2")
         self.horizontalLayout_4.addWidget(self.widget_2)
-        self.widget = PlotWidget(self.horizontalLayoutWidget_2)
+        self.widget = MplWidget(self.horizontalLayoutWidget_2)
         self.widget.setObjectName("widget")
         self.horizontalLayout_4.addWidget(self.widget)
         self.verticalLayoutWidget = QtWidgets.QWidget(self.frame)
@@ -168,7 +168,7 @@ class Ui_MainWindow(object):
         self.prediction = QtWidgets.QLabel(self.horizontalLayoutWidget_3)
         self.prediction.setObjectName("prediction")
         self.horizontalLayout_5.addWidget(self.prediction)
-        self.widget_3 = PlotWidget(self.frame)
+        self.widget_3 = MplWidget(self.frame)
         self.widget_3.setGeometry(QtCore.QRect(169, 609, 1361, 451))
         self.widget_3.setObjectName("widget_3")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -204,4 +204,4 @@ class Ui_MainWindow(object):
         self.label.setText(_translate("MainWindow", "Predicted Price $"))
         self.prediction.setText(_translate("MainWindow", "0"))
 
-from pyqtgraph import PlotWidget
+from mplwidget import MplWidget
