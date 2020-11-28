@@ -33,9 +33,9 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>150</y>
+       <y>40</y>
        <width>241</width>
-       <height>881</height>
+       <height>861</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -282,8 +282,8 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>60</y>
-       <width>321</width>
+       <y>910</y>
+       <width>241</width>
        <height>49</height>
       </rect>
      </property>
@@ -296,15 +296,15 @@
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="comboBox"/>
+       <widget class="QComboBox" name="savedHouses"/>
       </item>
      </layout>
     </widget>
     <widget class="QWidget" name="horizontalLayoutWidget_4">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>110</y>
+       <x>10</x>
+       <y>970</y>
        <width>221</width>
        <height>32</height>
       </rect>
@@ -360,6 +360,41 @@
        <width>1321</width>
        <height>421</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_3">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>90</y>
+       <width>321</width>
+       <height>49</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>Select a Feature to Compare</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="selectFeature"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QPushButton" name="selectFeatureButton">
+     <property name="geometry">
+      <rect>
+       <x>610</x>
+       <y>110</y>
+       <width>121</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Select Feature</string>
      </property>
     </widget>
    </widget>

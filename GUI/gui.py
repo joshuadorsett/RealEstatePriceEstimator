@@ -9,6 +9,7 @@ from GUI.RealEstatePriceEstimator_ui import Ui_MainWindow
 # use pyuic5 -o RealEstatePriceEstimator_ui.py RealEstatePriceEstimator.ui in the GUI folder every time you want to
 # update ui design
 # class for importing UI from QT Designer
+from GUI.mplwidget import MplWidget
 from oopModels.House import House
 
 
@@ -29,7 +30,12 @@ class Ui(QtWidgets.QMainWindow):
             "Max Price Sold": 500000.00,
             "Mean Price Sold": 225328.06,
         }
+        self.comboBox1()
         self._setGraphs()
+
+    def comboBox1(self):
+        features = ["Policing Rate", "Age of House", "Pupil-Teacher Ratio", "Property-Tax Rate", "Number of Rooms"]
+        self._ui.selectFeature.addItems(features)
 
     def _setGraphs(self):
         self._graph1()
@@ -44,8 +50,13 @@ class Ui(QtWidgets.QMainWindow):
 
     # plot canvas for embedded graph
     def _graph1(self):
-        self._ui.widget.canvas.ax.scatter(self._X['RM'], self._Y['0']*10000)
-        self._ui.widget.canvas.ax.set(title="Number of Rooms", xLabel="Number of Rooms", yLabel="Price")
+        comboBoxInput = self._ui.selectFeature.currentText()
+        switcher = {
+            "Policing Rate": 'CRIM', "Age of House":'AGE', "Pupil-Teacher Ratio":'PTRATIO', "Property-Tax Rate":'TAX', "Number of Rooms":'RM'
+        }
+
+        self._ui.widget.canvas.ax.scatter(self._X[switcher[comboBoxInput]], self._Y['0']*10000)
+        self._ui.widget.canvas.ax.set(title=comboBoxInput, xLabel=comboBoxInput, yLabel="Price")
         self._ui.widget.canvas.draw()
 
     # plot canvas for embedded graph
@@ -66,6 +77,7 @@ class Ui(QtWidgets.QMainWindow):
         self._ui.load.clicked.connect(self._loadMethod)
         self._ui.dele.clicked.connect(self._deleteMethod)
         self._ui.predict.clicked.connect(self._predictMethod)
+        self._ui.selectFeatureButton.clicked.connect(self._selectFeatureMethod)
 
         # find and assign text fields
         self.houseAddress = self.findChild(QtWidgets.QLineEdit, "i0")
@@ -82,6 +94,7 @@ class Ui(QtWidgets.QMainWindow):
     def _predictMethod(self):
         # create a new house object wit input text
         house = House(
+            str(self._ui.i0_2.text()),
             float(self._ui.i1.text()),
             float(self._ui.i2.text()),
             float(self._ui.i3.text()),
@@ -96,13 +109,18 @@ class Ui(QtWidgets.QMainWindow):
             float(self._ui.i12.text()),
             float(self._ui.i13.text())
         )
-
         # call ML method in House object and then set the prediction into the GUI
         predictionFloat64 = house.getLinearPrediction()
         predictionFloat = "{:.2f}".format(predictionFloat64)
-        self.barChartMap["Predicted Price"] = float(predictionFloat)
+        self._ui.widget_2.canvas.ax.clear()
+        self.barChartMap = {"Min Price Sold": 50000.00, "Max Price Sold": 500000.00, "Mean Price Sold": 225328.06,
+                            "Predicted Price": float(predictionFloat)}
         self._ui.prediction.setText(str(predictionFloat))
         self._graph2()
+
+    def _selectFeatureMethod(self):
+        self._ui.widget.canvas.ax.clear()
+        self._graph1()
 
 # create app and window objects and then open GUI
 app = QtWidgets.QApplication(sys.argv)  # Create an instance of app

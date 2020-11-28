@@ -3,8 +3,9 @@ from ML.trainedModels import linearPricePrediction
 
 class House:
     # constructor needs to receive all of the independent variables needed for ML models
-    def __init__(self, CRIM, ZN, INDUS,	CHAS, NOX, RM, AGE,	DIS, RAD, TAX, PTRATIO, B, LSTAT):
+    def __init__(self, ADDRESS, CRIM, ZN, INDUS,	CHAS, NOX, RM, AGE,	DIS, RAD, TAX, PTRATIO, B, LSTAT):
         # house specs contains users arguments for the house
+        self.address = ADDRESS
         self.houseSpecs = [[CRIM, ZN, INDUS, CHAS, NOX, RM, AGE, DIS, RAD, TAX, PTRATIO, B, LSTAT]]
         self.linearPrediction = None
 
