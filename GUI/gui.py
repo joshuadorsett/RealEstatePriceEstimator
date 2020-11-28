@@ -34,8 +34,13 @@ class Ui(QtWidgets.QMainWindow):
         self._setGraphs()
 
     def comboBox1(self):
-        features = ["Policing Rate", "Age of House", "Pupil-Teacher Ratio", "Property-Tax Rate", "Number of Rooms"]
+        features = ["Age of House", "Policing Rate", "Pupil-Teacher Ratio", "Property-Tax Rate", "Number of Rooms"]
         self._ui.selectFeature.addItems(features)
+
+    # it first gathers all the saved houses in the database and puts them into a list
+    # then set that list into the combo box
+    def comboBox2(self):
+        pass
 
     def _setGraphs(self):
         self._graph1()
@@ -50,13 +55,11 @@ class Ui(QtWidgets.QMainWindow):
 
     # plot canvas for embedded graph
     def _graph1(self):
-        comboBoxInput = self._ui.selectFeature.currentText()
-        switcher = {
-            "Policing Rate": 'CRIM', "Age of House":'AGE', "Pupil-Teacher Ratio":'PTRATIO', "Property-Tax Rate":'TAX', "Number of Rooms":'RM'
-        }
-
-        self._ui.widget.canvas.ax.scatter(self._X[switcher[comboBoxInput]], self._Y['0']*10000)
-        self._ui.widget.canvas.ax.set(title=comboBoxInput, xLabel=comboBoxInput, yLabel="Price")
+        comboBoxText = self._ui.selectFeature.currentText()
+        comboBoxIndex = self._ui.selectFeature.currentIndex()
+        switcher = {0: 'CRIM', 1: 'AGE', 2: 'PTRATIO', 3: 'TAX', 4: 'RM'}
+        self._ui.widget.canvas.ax.scatter(self._X[switcher[comboBoxIndex]], self._Y['0'] * 10000)
+        self._ui.widget.canvas.ax.set(title=comboBoxText, xLabel=comboBoxText, yLabel="Price")
         self._ui.widget.canvas.draw()
 
     # plot canvas for embedded graph
@@ -67,7 +70,7 @@ class Ui(QtWidgets.QMainWindow):
 
     # plot canvas for embedded graph
     def _graph3(self):
-        self._ui.widget_3.canvas.ax.hist(self._Y['0']*10000, rwidth=0.6)
+        self._ui.widget_3.canvas.ax.hist(self._Y['0'] * 10000, rwidth=0.6)
         self._ui.widget_3.canvas.ax.set(title="Prices Sold", xLabel="Prices Sold", yLabel="Volume")
         self._ui.widget_3.canvas.draw()
 
@@ -121,6 +124,7 @@ class Ui(QtWidgets.QMainWindow):
     def _selectFeatureMethod(self):
         self._ui.widget.canvas.ax.clear()
         self._graph1()
+
 
 # create app and window objects and then open GUI
 app = QtWidgets.QApplication(sys.argv)  # Create an instance of app
