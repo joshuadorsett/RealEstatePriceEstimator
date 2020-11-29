@@ -7,12 +7,12 @@ import matplotlib
 matplotlib.use('QT5Agg')
 
 
-# Matplotlib canvas class to create figure
+# class to create figure
 class MplCanvas(Canvas):
     def __init__(self):
-        self.fig = Figure()
-        self.ax = self.fig.add_subplot(111)
-        Canvas.__init__(self, self.fig)
+        self.figure = Figure()
+        self.ax = self.figure.add_subplot(111)
+        Canvas.__init__(self, self.figure)
         Canvas.setSizePolicy(self, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         Canvas.updateGeometry(self)
 
@@ -25,4 +25,3 @@ class MplWidget(QtWidgets.QWidget):
         self.vbl = QtWidgets.QVBoxLayout()
         self.vbl.addWidget(self.canvas)
         self.setLayout(self.vbl)
-

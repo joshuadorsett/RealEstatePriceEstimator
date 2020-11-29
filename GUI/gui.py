@@ -15,9 +15,19 @@ from oopModels.House import House
 
 class Ui(QtWidgets.QMainWindow):
     def __init__(self):
-        super(Ui, self).__init__()  # call inherited constructor
+        # call inherited constructor
+        super(Ui, self).__init__()
+        # declare attributes for reference
+        self._ui = None
+        self._barChartMap = None
+        self._houses = None
+        self._houseAddress = None
+        self._X = None
+        self._Y = None
+        # set up UI
         self._setUpUi()
-        self.show()  # Show the GUI
+        # Show the GUI
+        self.show()
 
     def _setUpUi(self):
         self.setFixedSize(1640, 1040)
@@ -25,14 +35,11 @@ class Ui(QtWidgets.QMainWindow):
         self._ui.setupUi(self)
         self._actionHandling()
         self._csvToPandas()
-        self.barChartMap = {
-            "Min Price Sold": 50000.00,
-            "Max Price Sold": 500000.00,
-            "Mean Price Sold": 225328.06,
-        }
+        self._barChartMap = {"Min Price Sold": 50000.00, "Max Price Sold": 500000.00, "Mean Price Sold": 225328.06}
         self.comboBox1()
         self._setGraphs()
 
+    # sets list of features into the combo box
     def comboBox1(self):
         features = ["Age of House", "Policing Rate", "Pupil-Teacher Ratio", "Property-Tax Rate", "Number of Rooms"]
         self._ui.selectFeature.addItems(features)
@@ -40,7 +47,8 @@ class Ui(QtWidgets.QMainWindow):
     # it first gathers all the saved houses in the database and puts them into a list
     # then set that list into the combo box
     def comboBox2(self):
-        pass
+        self._houses = []
+        self._ui.savedHouses.addItems(self._houses)
 
     def _setGraphs(self):
         self._graph1()
@@ -64,7 +72,7 @@ class Ui(QtWidgets.QMainWindow):
 
     # plot canvas for embedded graph
     def _graph2(self):
-        self._ui.widget_2.canvas.ax.bar(self.barChartMap.keys(), self.barChartMap.values())
+        self._ui.widget_2.canvas.ax.bar(self._barChartMap.keys(), self._barChartMap.values())
         self._ui.widget_2.canvas.ax.set(title="Statistics", yLabel="Price")
         self._ui.widget_2.canvas.draw()
 
@@ -83,7 +91,7 @@ class Ui(QtWidgets.QMainWindow):
         self._ui.selectFeatureButton.clicked.connect(self._selectFeatureMethod)
 
         # find and assign text fields
-        self.houseAddress = self.findChild(QtWidgets.QLineEdit, "i0")
+        self._houseAddress = self.findChild(QtWidgets.QLineEdit, "i0")
 
     def _saveMethod(self):
         print("save method")
@@ -116,7 +124,7 @@ class Ui(QtWidgets.QMainWindow):
         predictionFloat64 = house.getLinearPrediction()
         predictionFloat = "{:.2f}".format(predictionFloat64)
         self._ui.widget_2.canvas.ax.clear()
-        self.barChartMap = {"Min Price Sold": 50000.00, "Max Price Sold": 500000.00, "Mean Price Sold": 225328.06,
+        self._barChartMap = {"Min Price Sold": 50000.00, "Max Price Sold": 500000.00, "Mean Price Sold": 225328.06,
                             "Predicted Price": float(predictionFloat)}
         self._ui.prediction.setText(str(predictionFloat))
         self._graph2()
