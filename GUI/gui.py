@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets
 import pandas as pd
 import sys
-
+import DAO.dataBase
 from pandas import DataFrame
 
 from GUI.RealEstatePriceEstimator_ui import Ui_MainWindow
@@ -20,10 +20,13 @@ class Ui(QtWidgets.QMainWindow):
         # declare attributes for reference
         self._ui = None
         self._barChartMap = None
-        self._houses = None
+        self._houses = {}
+        self._currentHouse = None
         self._houseAddress = None
         self._X = None
         self._Y = None
+        # access database
+        self.DB = DAO.dataBase.DB()
         # set up UI
         self._setUpUi()
         # Show the GUI
@@ -36,19 +39,41 @@ class Ui(QtWidgets.QMainWindow):
         self._actionHandling()
         self._csvToPandas()
         self._barChartMap = {"Min Price Sold": 50000.00, "Max Price Sold": 500000.00, "Mean Price Sold": 225328.06}
-        self.comboBox1()
+        self.selectFeatureCB()
+        self.savedHousesCB()
         self._setGraphs()
 
     # sets list of features into the combo box
-    def comboBox1(self):
+    def selectFeatureCB(self):
         features = ["Age of House", "Policing Rate", "Pupil-Teacher Ratio", "Property-Tax Rate", "Number of Rooms"]
         self._ui.selectFeature.addItems(features)
 
     # it first gathers all the saved houses in the database and puts them into a list
     # then set that list into the combo box
-    def comboBox2(self):
-        self._houses = []
-        self._ui.savedHouses.addItems(self._houses)
+    def savedHousesCB(self):
+        sel = self.DB.selectAll()
+        for house in sel:
+            selHouse = House(
+                house[1],
+                house[2],
+                house[3],
+                house[4],
+                house[5],
+                house[6],
+                house[7],
+                house[8],
+                house[9],
+                house[10],
+                house[11],
+                house[12],
+                house[13],
+                house[14]
+            )
+            self._houses[house[1]] = selHouse
+        addressList = []
+        for s in sel:
+            addressList.append(s[1])
+        self._ui.savedHouses.addItems(addressList)
 
     def _setGraphs(self):
         self._graph1()
@@ -84,23 +109,13 @@ class Ui(QtWidgets.QMainWindow):
 
     def _actionHandling(self):
         # find and assign buttons
-        self._ui.save.clicked.connect(self._saveMethod)
-        self._ui.load.clicked.connect(self._loadMethod)
-        self._ui.dele.clicked.connect(self._deleteMethod)
         self._ui.predict.clicked.connect(self._predictMethod)
         self._ui.selectFeatureButton.clicked.connect(self._selectFeatureMethod)
-
+        # self._ui.save.clicked.connect(self._saveMethod)
+        self._ui.load.clicked.connect(self._loadMethod)
+        self._ui.dele.clicked.connect(self._deleteMethod)
         # find and assign text fields
         self._houseAddress = self.findChild(QtWidgets.QLineEdit, "i0")
-
-    def _saveMethod(self):
-        print("save method")
-
-    def _loadMethod(self):
-        print(("load method"))
-
-    def _deleteMethod(self):
-        print("delete method")
 
     def _predictMethod(self):
         # create a new house object wit input text
@@ -123,6 +138,8 @@ class Ui(QtWidgets.QMainWindow):
         # call ML method in House object and then set the prediction into the GUI
         predictionFloat64 = house.getLinearPrediction()
         predictionFloat = "{:.2f}".format(predictionFloat64)
+        self.DB.insert(house)
+        self.savedHousesCB()
         self._ui.widget_2.canvas.ax.clear()
         self._barChartMap = {"Min Price Sold": 50000.00, "Max Price Sold": 500000.00, "Mean Price Sold": 225328.06,
                             "Predicted Price": float(predictionFloat)}
@@ -132,6 +149,27 @@ class Ui(QtWidgets.QMainWindow):
     def _selectFeatureMethod(self):
         self._ui.widget.canvas.ax.clear()
         self._graph1()
+
+    def _loadMethod(self):
+        selAddress = self._ui.savedHouses.currentText()
+        house = self._houses[selAddress]
+        self._ui.i0_2.setText(house.address)
+        self._ui.i1.setText(str(house.houseSpecs[0][0]))
+        self._ui.i1.setText(str(house.houseSpecs[0][1]))
+        self._ui.i1.setText(str(house.houseSpecs[0][2]))
+        self._ui.i1.setText(str(house.houseSpecs[0][3]))
+        self._ui.i1.setText(str(house.houseSpecs[0][4]))
+        self._ui.i1.setText(str(house.houseSpecs[0][5]))
+        self._ui.i1.setText(str(house.houseSpecs[0][6]))
+        self._ui.i1.setText(str(house.houseSpecs[0][7]))
+        self._ui.i1.setText(str(house.houseSpecs[0][8]))
+        self._ui.i1.setText(str(house.houseSpecs[0][9]))
+        self._ui.i1.setText(str(house.houseSpecs[0][10]))
+        self._ui.i1.setText(str(house.houseSpecs[0][11]))
+        self._ui.i1.setText(str(house.houseSpecs[0][12]))
+
+    def _deleteMethod(self):
+        print("delete method")
 
 
 # create app and window objects and then open GUI
