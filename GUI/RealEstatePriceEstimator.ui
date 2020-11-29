@@ -72,7 +72,7 @@
       <item>
        <widget class="QLineEdit" name="i1">
         <property name="text">
-         <string>0.28</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -86,7 +86,7 @@
       <item>
        <widget class="QLineEdit" name="i2">
         <property name="text">
-         <string>0</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -100,7 +100,7 @@
       <item>
        <widget class="QLineEdit" name="i3">
         <property name="text">
-         <string>11.69</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -114,7 +114,7 @@
       <item>
        <widget class="QLineEdit" name="i4">
         <property name="text">
-         <string>0</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -128,7 +128,7 @@
       <item>
        <widget class="QLineEdit" name="i5">
         <property name="text">
-         <string>.624</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -142,7 +142,7 @@
       <item>
        <widget class="QLineEdit" name="i6">
         <property name="text">
-         <string>6</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -156,7 +156,7 @@
       <item>
        <widget class="QLineEdit" name="i7">
         <property name="text">
-         <string>94</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -170,7 +170,7 @@
       <item>
        <widget class="QLineEdit" name="i8">
         <property name="text">
-         <string>.07</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -184,7 +184,7 @@
       <item>
        <widget class="QLineEdit" name="i9">
         <property name="text">
-         <string>5</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -198,7 +198,7 @@
       <item>
        <widget class="QLineEdit" name="i10">
         <property name="text">
-         <string>370</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -212,7 +212,7 @@
       <item>
        <widget class="QLineEdit" name="i11">
         <property name="text">
-         <string>19</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -226,7 +226,7 @@
       <item>
        <widget class="QLineEdit" name="i12">
         <property name="text">
-         <string>391</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -240,7 +240,7 @@
       <item>
        <widget class="QLineEdit" name="i13">
         <property name="text">
-         <string>3</string>
+         <string/>
         </property>
        </widget>
       </item>
