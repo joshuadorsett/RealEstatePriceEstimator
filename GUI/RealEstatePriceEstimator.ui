@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1700</width>
-    <height>1070</height>
+    <height>1025</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>-30</y>
+      <y>-70</y>
       <width>1661</width>
       <height>1061</height>
      </rect>
@@ -33,16 +33,16 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>40</y>
+       <y>90</y>
        <width>241</width>
-       <height>861</height>
+       <height>811</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QLabel" name="l0">
         <property name="text">
-         <string>Street Address</string>
+         <string>Sale ID / Street Address</string>
         </property>
        </widget>
       </item>
@@ -55,7 +55,7 @@
          </font>
         </property>
         <property name="text">
-         <string/>
+         <string>average</string>
         </property>
         <property name="maxLength">
          <number>12</number>
@@ -72,7 +72,7 @@
       <item>
        <widget class="QLineEdit" name="i1">
         <property name="text">
-         <string/>
+         <string>3.613524</string>
         </property>
        </widget>
       </item>
@@ -86,7 +86,7 @@
       <item>
        <widget class="QLineEdit" name="i2">
         <property name="text">
-         <string/>
+         <string>11.363636</string>
         </property>
        </widget>
       </item>
@@ -100,7 +100,7 @@
       <item>
        <widget class="QLineEdit" name="i3">
         <property name="text">
-         <string/>
+         <string>11.136779</string>
         </property>
        </widget>
       </item>
@@ -114,7 +114,7 @@
       <item>
        <widget class="QLineEdit" name="i4">
         <property name="text">
-         <string/>
+         <string>0.069170	</string>
         </property>
        </widget>
       </item>
@@ -128,7 +128,7 @@
       <item>
        <widget class="QLineEdit" name="i5">
         <property name="text">
-         <string/>
+         <string>0.554695	</string>
         </property>
        </widget>
       </item>
@@ -142,7 +142,7 @@
       <item>
        <widget class="QLineEdit" name="i6">
         <property name="text">
-         <string/>
+         <string>6.284634	</string>
         </property>
        </widget>
       </item>
@@ -156,7 +156,7 @@
       <item>
        <widget class="QLineEdit" name="i7">
         <property name="text">
-         <string/>
+         <string>68.574901</string>
         </property>
        </widget>
       </item>
@@ -170,7 +170,7 @@
       <item>
        <widget class="QLineEdit" name="i8">
         <property name="text">
-         <string/>
+         <string>3.795043	</string>
         </property>
        </widget>
       </item>
@@ -184,7 +184,7 @@
       <item>
        <widget class="QLineEdit" name="i9">
         <property name="text">
-         <string/>
+         <string>9.549407	</string>
         </property>
        </widget>
       </item>
@@ -198,7 +198,7 @@
       <item>
        <widget class="QLineEdit" name="i10">
         <property name="text">
-         <string/>
+         <string>408.237154	</string>
         </property>
        </widget>
       </item>
@@ -212,7 +212,7 @@
       <item>
        <widget class="QLineEdit" name="i11">
         <property name="text">
-         <string/>
+         <string>18.455534</string>
         </property>
        </widget>
       </item>
@@ -226,7 +226,7 @@
       <item>
        <widget class="QLineEdit" name="i12">
         <property name="text">
-         <string/>
+         <string>356.674032	</string>
         </property>
        </widget>
       </item>
@@ -240,7 +240,7 @@
       <item>
        <widget class="QLineEdit" name="i13">
         <property name="text">
-         <string/>
+         <string>12.653063 </string>
         </property>
        </widget>
       </item>
@@ -358,7 +358,7 @@
     <widget class="QWidget" name="verticalLayoutWidget_3">
      <property name="geometry">
       <rect>
-       <x>290</x>
+       <x>300</x>
        <y>90</y>
        <width>321</width>
        <height>49</height>
@@ -380,7 +380,7 @@
     <widget class="QPushButton" name="selectFeatureButton">
      <property name="geometry">
       <rect>
-       <x>610</x>
+       <x>620</x>
        <y>110</y>
        <width>121</width>
        <height>32</height>

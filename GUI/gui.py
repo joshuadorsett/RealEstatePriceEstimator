@@ -32,7 +32,7 @@ class Ui(QtWidgets.QMainWindow):
         self.show()
 
     def _setUpUi(self):
-        self.setFixedSize(1640, 1040)
+        self.setFixedSize(1650, 1040)
         self._ui = Ui_MainWindow()
         self._ui.setupUi(self)
         self._actionHandling()
@@ -40,7 +40,6 @@ class Ui(QtWidgets.QMainWindow):
         self._barChartMap = {"Min Price Sold": 50000.00, "Max Price Sold": 500000.00, "Mean Price Sold": 225328.06}
         self.selectFeatureCB()
         self.savedHousesCB()
-        self._loadMethod()
         self._setGraphs()
 
     # sets list of features into the combo box
@@ -77,13 +76,13 @@ class Ui(QtWidgets.QMainWindow):
         comboBoxIndex = self._ui.selectFeature.currentIndex()
         switcher = {0: 'CRIM', 1: 'AGE', 2: 'PTRATIO', 3: 'TAX', 4: 'RM'}
         self._ui.widget.canvas.ax.scatter(self._X[switcher[comboBoxIndex]], self._Y['0'] * 10000)
-        self._ui.widget.canvas.ax.set(title=comboBoxText, xLabel=comboBoxText, yLabel="Price")
+        self._ui.widget.canvas.ax.set(title=comboBoxText, xLabel=comboBoxText)
         self._ui.widget.canvas.draw()
 
     # plot canvas for embedded graph
     def _graph2(self):
         self._ui.widget_2.canvas.ax.bar(self._barChartMap.keys(), self._barChartMap.values())
-        self._ui.widget_2.canvas.ax.set(title="Statistics", yLabel="Price")
+        self._ui.widget_2.canvas.ax.set(title="Statistics")
         self._ui.widget_2.canvas.draw()
 
     # plot canvas for embedded graph

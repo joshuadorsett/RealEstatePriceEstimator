@@ -9,7 +9,7 @@ class DB:
         self.houses = Table (
             'Houses',
             self.meta,
-            Column('id', Integer),
+            Column('id', Integer, primary_key=True),
             Column('address', String),
             Column('crim', Float),
             Column('zn', Float),
