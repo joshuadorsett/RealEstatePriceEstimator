@@ -103,6 +103,34 @@ class Ui(QtWidgets.QMainWindow):
         self._houseAddress = self.findChild(QtWidgets.QLineEdit, "i0")
 
     def _predictMethod(self):
+        if (self._ui.i0_2.text()) == '':
+            return
+        if (self._ui.i1.text()) == '':
+            return
+        if (self._ui.i2.text()) == '':
+            return
+        if (self._ui.i3.text()) == '':
+            return
+        if (self._ui.i4.text()) == '':
+            return
+        if (self._ui.i5.text()) == '':
+            return
+        if (self._ui.i6.text()) == '':
+            return
+        if (self._ui.i7.text()) == '':
+            return
+        if (self._ui.i8.text()) == '':
+            return
+        if (self._ui.i9.text()) == '':
+            return
+        if (self._ui.i10.text()) == '':
+            return
+        if (self._ui.i11.text()) == '':
+            return
+        if (self._ui.i12.text()) == '':
+            return
+        if (self._ui.i13.text()) == '':
+            return
         # create a new house object wit input text
         house = House(
             str(self._ui.i0_2.text()),
@@ -137,23 +165,26 @@ class Ui(QtWidgets.QMainWindow):
 
     def _loadMethod(self):
         selAddress = self._ui.savedHouses.currentText()
-        house = self.DB.select(selAddress)
-        print(house)
-        self._ui.i0_2.setText(str(house[1]))
-        self._ui.i1.setText(str(house[2]))
-        self._ui.i2.setText(str(house[3]))
-        self._ui.i3.setText(str(house[4]))
-        self._ui.i4.setText(str(house[5]))
-        self._ui.i5.setText(str(house[6]))
-        self._ui.i6.setText(str(house[7]))
-        self._ui.i7.setText(str(house[8]))
-        self._ui.i8.setText(str(house[9]))
-        self._ui.i9.setText(str(house[10]))
-        self._ui.i10.setText(str(house[11]))
-        self._ui.i11.setText(str(house[12]))
-        self._ui.i12.setText(str(house[13]))
-        self._ui.i13.setText(str(house[14]))
-        self._predictMethod()
+        if selAddress is not '':
+            house = self.DB.select(selAddress)
+            print(house)
+            self._ui.i0_2.setText(str(house[1]))
+            self._ui.i1.setText(str(house[2]))
+            self._ui.i2.setText(str(house[3]))
+            self._ui.i3.setText(str(house[4]))
+            self._ui.i4.setText(str(house[5]))
+            self._ui.i5.setText(str(house[6]))
+            self._ui.i6.setText(str(house[7]))
+            self._ui.i7.setText(str(house[8]))
+            self._ui.i8.setText(str(house[9]))
+            self._ui.i9.setText(str(house[10]))
+            self._ui.i10.setText(str(house[11]))
+            self._ui.i11.setText(str(house[12]))
+            self._ui.i12.setText(str(house[13]))
+            self._ui.i13.setText(str(house[14]))
+            self._predictMethod()
+        else:
+            pass
 
     def _deleteMethod(self):
         selAddress = self._ui.savedHouses.currentText()

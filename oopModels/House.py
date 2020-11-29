@@ -14,7 +14,3 @@ class House:
         if self.linearPrediction is None:
             self.linearPrediction = linearPricePrediction(self.houseSpecs)
         return self.linearPrediction
-
-    # add house specs and prediction to data base with user ID
-    def save(self):
-        pass
