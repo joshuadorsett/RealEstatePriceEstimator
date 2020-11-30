@@ -1,6 +1,5 @@
 import joblib
 
-
 def linearPricePrediction( featuresList ):
     model_filename = '/Users/joshuadorsett/PycharmProjects/RealEstatePriceEstimator/ML/HousePricePrediction.joblib'
     linRegModel = joblib.load(model_filename)

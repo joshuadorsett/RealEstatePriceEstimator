@@ -208,9 +208,12 @@ class Ui(QtWidgets.QMainWindow):
         selAddress = self._ui.savedHouses.currentText()
         self.DB.delete(selAddress)
         self.savedHousesCB()
+
 # create app and window objects and then open GUI
 app = QtWidgets.QApplication(sys.argv)  # Create an instance of app
 
 window = Ui()  # create instance of Ui
 
 app.exec()  # execute app
+
+
