@@ -13,6 +13,13 @@ from GUI.mplwidget import MplWidget
 from oopModels.House import House
 
 
+def _is_float(text):
+    try:
+        float(text)
+        return True
+    except ValueError:
+        return False
+
 class Ui(QtWidgets.QMainWindow):
     def __init__(self):
         # call inherited constructor
@@ -107,34 +114,35 @@ class Ui(QtWidgets.QMainWindow):
         # find and assign text fields
         self._houseAddress = self.findChild(QtWidgets.QLineEdit, "i0")
 
+
     def _predictMethod(self):
         if (self._ui.i0_2.text()) == '':
             return
-        if (self._ui.i1.text()) == '':
+        if not (not ((self._ui.i1.text()) == '') and (_is_float(self._ui.i1.text()))):
             return
-        if (self._ui.i2.text()) == '':
+        if not (not ((self._ui.i2.text()) == '') and (_is_float(self._ui.i2.text()))):
             return
-        if (self._ui.i3.text()) == '':
+        if not (not ((self._ui.i3.text()) == '') and (_is_float(self._ui.i3.text()))):
             return
-        if (self._ui.i4.text()) == '':
+        if not (not ((self._ui.i4.text()) == '') and (_is_float(self._ui.i4.text()))):
             return
-        if (self._ui.i5.text()) == '':
+        if not (not ((self._ui.i5.text()) == '') and (_is_float(self._ui.i5.text()))):
             return
-        if (self._ui.i6.text()) == '':
+        if not (not ((self._ui.i6.text()) == '') and (_is_float(self._ui.i6.text()))):
             return
-        if (self._ui.i7.text()) == '':
+        if not (not ((self._ui.i7.text()) == '') and (_is_float(self._ui.i7.text()))):
             return
-        if (self._ui.i8.text()) == '':
+        if not (not ((self._ui.i8.text()) == '') and (_is_float(self._ui.i8.text()))):
             return
-        if (self._ui.i9.text()) == '':
+        if not (not ((self._ui.i9.text()) == '') and (_is_float(self._ui.i9.text()))):
             return
-        if (self._ui.i10.text()) == '':
+        if not (not ((self._ui.i10.text()) == '') and (_is_float(self._ui.i10.text()))):
             return
-        if (self._ui.i11.text()) == '':
+        if not (not ((self._ui.i11.text()) == '') and (_is_float(self._ui.i11.text()))):
             return
-        if (self._ui.i12.text()) == '':
+        if not (not ((self._ui.i12.text()) == '') and (_is_float(self._ui.i12.text()))):
             return
-        if (self._ui.i13.text()) == '':
+        if not (not ((self._ui.i13.text()) == '') and (_is_float(self._ui.i13.text()))):
             return
         # create a new house object wit input text
         house = House(
