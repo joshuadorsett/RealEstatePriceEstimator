@@ -24,6 +24,7 @@ class Ui(QtWidgets.QMainWindow):
         self._houseAddress = None
         self._X = None
         self._Y = None
+        self._userHouseSpecs = None
         # access database
         self.DB = DAO.dataBase.DB()
         # set up UI
@@ -71,25 +72,30 @@ class Ui(QtWidgets.QMainWindow):
             "/Users/joshuadorsett/PycharmProjects/RealEstatePriceEstimator/ML/bostonTarget.csv"))
 
     # plot canvas for embedded graph
-    def _graph1(self):
+    def _graph3(self):
+        self._ui.widget_3.canvas.ax.set_facecolor((.84, .84, .84, 1))
         comboBoxText = self._ui.selectFeature.currentText()
         comboBoxIndex = self._ui.selectFeature.currentIndex()
         switcher = {0: 'CRIM', 1: 'AGE', 2: 'PTRATIO', 3: 'TAX', 4: 'RM'}
-        self._ui.widget.canvas.ax.scatter(self._X[switcher[comboBoxIndex]], self._Y['0'] * 10000)
-        self._ui.widget.canvas.ax.set(title=comboBoxText, xLabel=comboBoxText)
-        self._ui.widget.canvas.draw()
+        self._ui.widget_3.canvas.ax.scatter(self._X[switcher[comboBoxIndex]], self._Y['0'] * 10000, color='black')
+        if self._userHouseSpecs is not None:
+            self._ui.widget_3.canvas.ax.scatter(self._userHouseSpecs[comboBoxIndex], self._userHouseSpecs[5], color='red', s=120, marker='o')
+        self._ui.widget_3.canvas.ax.set(title=comboBoxText, xLabel=comboBoxText)
+        self._ui.widget_3.canvas.draw()
 
     # plot canvas for embedded graph
     def _graph2(self):
-        self._ui.widget_2.canvas.ax.bar(self._barChartMap.keys(), self._barChartMap.values())
+        self._ui.widget_2.canvas.ax.set_facecolor((.84, .84, .84, 1))
+        self._ui.widget_2.canvas.ax.bar(self._barChartMap.keys(), self._barChartMap.values(), color='blue')
         self._ui.widget_2.canvas.ax.set(title="Statistics")
         self._ui.widget_2.canvas.draw()
 
     # plot canvas for embedded graph
-    def _graph3(self):
-        self._ui.widget_3.canvas.ax.hist(self._Y['0'] * 10000, rwidth=0.6)
-        self._ui.widget_3.canvas.ax.set(title="Prices Sold", xLabel="Prices Sold", yLabel="Volume")
-        self._ui.widget_3.canvas.draw()
+    def _graph1(self):
+        self._ui.widget.canvas.ax.set_facecolor((.84, .84, .84, 1))
+        self._ui.widget.canvas.ax.hist(self._Y['0'] * 10000, rwidth=0.6, color='green')
+        self._ui.widget.canvas.ax.set(title="Prices Sold", xLabel="Prices Sold", yLabel="Volume")
+        self._ui.widget.canvas.draw()
 
     def _actionHandling(self):
         # find and assign buttons
@@ -153,14 +159,26 @@ class Ui(QtWidgets.QMainWindow):
         self.DB.insert(house)
         self.savedHousesCB()
         self._ui.widget_2.canvas.ax.clear()
+        self._ui.widget_3.canvas.ax.clear()
         self._barChartMap = {"Min Price Sold": 50000.00, "Max Price Sold": 500000.00, "Mean Price Sold": 225328.06,
                             "Predicted Price": float(predictionFloat)}
         self._ui.prediction.setText(str(predictionFloat))
         self._graph2()
+        self._userHouseSpecs = [
+            house.houseSpecs[0][0],
+            house.houseSpecs[0][6],
+            house.houseSpecs[0][10],
+            house.houseSpecs[0][9],
+            house.houseSpecs[0][5],
+            float(predictionFloat)
+            ]
+        self._graph3()
+
+
 
     def _selectFeatureMethod(self):
-        self._ui.widget.canvas.ax.clear()
-        self._graph1()
+        self._ui.widget_3.canvas.ax.clear()
+        self._graph3()
 
     def _loadMethod(self):
         selAddress = self._ui.savedHouses.currentText()
@@ -182,6 +200,7 @@ class Ui(QtWidgets.QMainWindow):
             self._ui.i12.setText(str(house[13]))
             self._ui.i13.setText(str(house[14]))
             self._predictMethod()
+            self._selectFeatureMethod()
         else:
             pass
 

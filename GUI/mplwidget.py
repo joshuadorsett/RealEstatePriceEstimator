@@ -11,6 +11,7 @@ matplotlib.use('QT5Agg')
 class MplCanvas(Canvas):
     def __init__(self):
         self.figure = Figure()
+        self.figure.set_facecolor((.935, .935, .935, 1))
         self.ax = self.figure.add_subplot(111)
         Canvas.__init__(self, self.figure)
         Canvas.setSizePolicy(self, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)

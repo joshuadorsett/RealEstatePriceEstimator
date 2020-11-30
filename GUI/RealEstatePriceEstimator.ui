@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1700</width>
+    <width>1716</width>
     <height>1025</height>
    </rect>
   </property>
@@ -17,11 +17,34 @@
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>0</x>
       <y>-70</y>
-      <width>1661</width>
-      <height>1061</height>
+      <width>1741</width>
+      <height>1091</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame
+{
+background-color: rgb(239, 239, 239);
+}
+QVBoxLayout{
+background-color: rgb(143, 143, 143);
+
+}
+
+QLineEdit, QComboBox
+{
+color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);
+
+}
+
+QPushButton {
+	
+	background-color: rgb(200, 200, 200);
+}
+</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -32,10 +55,10 @@
     <widget class="QWidget" name="verticalLayoutWidget_2">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>20</x>
        <y>90</y>
        <width>241</width>
-       <height>811</height>
+       <height>801</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -54,6 +77,9 @@
           <bold>false</bold>
          </font>
         </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <property name="text">
          <string>average</string>
         </property>
@@ -64,6 +90,9 @@
       </item>
       <item>
        <widget class="QLabel" name="l1">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <property name="text">
          <string>Rate of Policing</string>
         </property>
@@ -257,9 +286,9 @@
      <property name="geometry">
       <rect>
        <x>290</x>
-       <y>150</y>
+       <y>90</y>
        <width>1321</width>
-       <height>441</height>
+       <height>511</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -271,33 +300,11 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="verticalLayoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>910</y>
-       <width>241</width>
-       <height>49</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Saved House Predictions</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="savedHouses"/>
-      </item>
-     </layout>
-    </widget>
     <widget class="QWidget" name="horizontalLayoutWidget_4">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>970</y>
+       <x>20</x>
+       <y>990</y>
        <width>221</width>
        <height>32</height>
       </rect>
@@ -319,75 +326,92 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="horizontalLayoutWidget_3">
-     <property name="geometry">
-      <rect>
-       <x>1200</x>
-       <y>100</y>
-       <width>211</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_5">
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Predicted Price $</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="prediction">
-        <property name="text">
-         <string>0</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
     <widget class="MplWidget" name="widget_3" native="true">
      <property name="geometry">
       <rect>
        <x>290</x>
-       <y>600</y>
+       <y>640</y>
        <width>1321</width>
        <height>421</height>
       </rect>
      </property>
     </widget>
-    <widget class="QWidget" name="verticalLayoutWidget_3">
-     <property name="geometry">
-      <rect>
-       <x>300</x>
-       <y>90</y>
-       <width>321</width>
-       <height>49</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
-      <item>
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>Select a Feature to Compare</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="selectFeature"/>
-      </item>
-     </layout>
-    </widget>
     <widget class="QPushButton" name="selectFeatureButton">
      <property name="geometry">
       <rect>
        <x>620</x>
-       <y>110</y>
+       <y>610</y>
        <width>121</width>
-       <height>32</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="text">
       <string>Select Feature</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>900</y>
+       <width>121</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 15pt &quot;.AppleSystemUIFont&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Predicted Price $</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="prediction">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>900</y>
+       <width>111</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 15pt &quot;.AppleSystemUIFont&quot;;</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="savedHouses">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>960</y>
+       <width>241</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>930</y>
+       <width>239</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Saved House Predictions</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="selectFeature">
+     <property name="geometry">
+      <rect>
+       <x>310</x>
+       <y>610</y>
+       <width>301</width>
+       <height>20</height>
+      </rect>
      </property>
     </widget>
    </widget>
