@@ -42,7 +42,8 @@ background-color: rgb(255, 255, 255);
 
 QPushButton {
 	
-	background-color: rgb(200, 200, 200);
+	color: rgb(255, 255, 255);
+	background-color: rgb(50, 50, 50);
 }
 </string>
     </property>
@@ -57,8 +58,8 @@ QPushButton {
       <rect>
        <x>20</x>
        <y>110</y>
-       <width>257</width>
-       <height>781</height>
+       <width>251</width>
+       <height>751</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -329,28 +330,28 @@ QPushButton {
     <widget class="MplWidget" name="widget_3" native="true">
      <property name="geometry">
       <rect>
-       <x>290</x>
+       <x>270</x>
        <y>630</y>
-       <width>1401</width>
+       <width>1381</width>
        <height>461</height>
       </rect>
      </property>
      <widget class="QComboBox" name="selectFeature">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>0</y>
-        <width>301</width>
-        <height>20</height>
+        <x>260</x>
+        <y>10</y>
+        <width>221</width>
+        <height>21</height>
        </rect>
       </property>
      </widget>
      <widget class="QPushButton" name="selectFeatureButton">
       <property name="geometry">
        <rect>
-        <x>410</x>
-        <y>0</y>
-        <width>121</width>
+        <x>490</x>
+        <y>10</y>
+        <width>101</width>
         <height>21</height>
        </rect>
       </property>
@@ -363,7 +364,7 @@ QPushButton {
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>900</y>
+       <y>890</y>
        <width>121</width>
        <height>21</height>
       </rect>
@@ -379,7 +380,7 @@ QPushButton {
      <property name="geometry">
       <rect>
        <x>140</x>
-       <y>900</y>
+       <y>890</y>
        <width>111</width>
        <height>21</height>
       </rect>

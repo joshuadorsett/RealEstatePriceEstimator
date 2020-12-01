@@ -34,14 +34,15 @@ class Ui_MainWindow(object):
 "\n"
 "QPushButton {\n"
 "    \n"
-"    background-color: rgb(200, 200, 200);\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(50, 50, 50);\n"
 "}\n"
 "")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.frame)
-        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(20, 110, 257, 781))
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(20, 110, 251, 751))
         self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -165,20 +166,20 @@ class Ui_MainWindow(object):
         self.dele.setObjectName("dele")
         self.horizontalLayout_6.addWidget(self.dele)
         self.widget_3 = MplWidget(self.frame)
-        self.widget_3.setGeometry(QtCore.QRect(290, 630, 1401, 461))
+        self.widget_3.setGeometry(QtCore.QRect(270, 630, 1381, 461))
         self.widget_3.setObjectName("widget_3")
         self.selectFeature = QtWidgets.QComboBox(self.widget_3)
-        self.selectFeature.setGeometry(QtCore.QRect(100, 0, 301, 20))
+        self.selectFeature.setGeometry(QtCore.QRect(260, 10, 221, 21))
         self.selectFeature.setObjectName("selectFeature")
         self.selectFeatureButton = QtWidgets.QPushButton(self.widget_3)
-        self.selectFeatureButton.setGeometry(QtCore.QRect(410, 0, 121, 21))
+        self.selectFeatureButton.setGeometry(QtCore.QRect(490, 10, 101, 21))
         self.selectFeatureButton.setObjectName("selectFeatureButton")
         self.label = QtWidgets.QLabel(self.frame)
-        self.label.setGeometry(QtCore.QRect(20, 900, 121, 21))
+        self.label.setGeometry(QtCore.QRect(20, 890, 121, 21))
         self.label.setStyleSheet("font: 15pt \".AppleSystemUIFont\";")
         self.label.setObjectName("label")
         self.prediction = QtWidgets.QLabel(self.frame)
-        self.prediction.setGeometry(QtCore.QRect(140, 900, 111, 21))
+        self.prediction.setGeometry(QtCore.QRect(140, 890, 111, 21))
         self.prediction.setStyleSheet("font: 15pt \".AppleSystemUIFont\";")
         self.prediction.setObjectName("prediction")
         self.savedHouses = QtWidgets.QComboBox(self.frame)

@@ -2,11 +2,11 @@ from sqlalchemy import *
 
 
 class DB:
-
+    # connect to database and create the house table schema
     def __init__(self):
-        self.db = create_engine('sqlite:///houses.db', echo = True)
+        self.db = create_engine('sqlite:///houses.db', echo=True)
         self.meta = MetaData()
-        self.houses = Table (
+        self.houses = Table(
             'Houses',
             self.meta,
             Column('id', Integer, primary_key=True),
@@ -28,10 +28,12 @@ class DB:
         self.meta.create_all(self.db)
         self.conn = self.db.connect()
 
+    # insert a new house into the house table if its a new address
+    # update a previous house if address is already in house table
     def insert(self, house):
         selAddress = self.select(house.address)
         if selAddress is None:
-            insert = self.houses.insert().values(
+            ins = self.houses.insert().values(
                 address=house.address,
                 crim=house.houseSpecs[0][0],
                 zn=house.houseSpecs[0][1],
@@ -47,9 +49,9 @@ class DB:
                 b=house.houseSpecs[0][11],
                 lstat=house.houseSpecs[0][12]
             )
-            self.conn.execute(insert)
+            self.conn.execute(ins)
         else:
-            update = self.houses.update().values(
+            upd = self.houses.update().values(
                 address=house.address,
                 crim=house.houseSpecs[0][0],
                 zn=house.houseSpecs[0][1],
@@ -65,18 +67,22 @@ class DB:
                 b=house.houseSpecs[0][11],
                 lstat=house.houseSpecs[0][12]
             ).where(self.houses.c.address == house.address)
-            self.conn.execute(update)
+            self.conn.execute(upd)
             print("already in DB")
+
+    # return all rows from house table
     def selectAll(self):
         sel = self.houses.select()
         r = self.conn.execute(sel)
         return r.fetchall()
 
+    # return a specific row from house table
     def select(self, address):
         sel = self.houses.select().where(self.houses.c.address.like(address))
         r = self.conn.execute(sel)
         return r.fetchone()
 
+    # delete a specific row from the house table
     def delete(self, address):
-        delete = self.houses.delete().where(self.houses.c.address.like(address))
-        self.conn.execute(delete)
+        dele = self.houses.delete().where(self.houses.c.address.like(address))
+        self.conn.execute(dele)
