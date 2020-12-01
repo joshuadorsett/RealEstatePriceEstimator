@@ -9,7 +9,7 @@ import BackEnd.database
 # in the FrontEnd folder to convert Ui to python file
 from FrontEnd.RealEstatePriceEstimator_ui import Ui_MainWindow
 from BackEnd.house import House
-from FrontEnd.inputValidation import inputNotValid, messageBoxForInputs
+from FrontEnd.inputValidation import inputNotValid, messageBoxForIDInput
 
 
 # class for importing UI from QT Designer
@@ -112,40 +112,36 @@ class Ui(QtWidgets.QMainWindow):
     def _predictMethod(self):
 
         # make a list of all number inputs
-        numberIns = [ self._ui.i1.text(),
-            self._ui.i2.text(), self._ui.i3.text(), self._ui.i4.text(), self._ui.i5.text(),
-            self._ui.i6.text(), self._ui.i7.text(), self._ui.i8.text(), self._ui.i9.text(),
-            self._ui.i10.text(), self._ui.i11.text(), self._ui.i12.text(), self._ui.i13.text()
-        ]
+        numberIns = [self._ui.i1.text(),
+                     self._ui.i2.text(), self._ui.i3.text(), self._ui.i4.text(), self._ui.i5.text(),
+                     self._ui.i6.text(), self._ui.i7.text(), self._ui.i8.text(), self._ui.i9.text(),
+                     self._ui.i10.text(), self._ui.i11.text(), self._ui.i12.text(), self._ui.i13.text()
+                     ]
 
-        # check to see if the input fields are valid
+        # check to see if the first input field is blank
         if (self._ui.i0_2.text()) == '':
-            messageBoxForInputs()
+            messageBoxForIDInput()
             return
 
+        # check to see if the rest of the input fields are only digits
+        # (floating point too, so isdigit() func is not a valid solution)
         for userIn in numberIns:
             if inputNotValid(userIn):
                 return
 
-        # create a new house object wit input text
+        # create a new house object with valid input text
+        # cast the inputs to either a str or a float
         house = House(
-            str(self._ui.i0_2.text()),
-            float(self._ui.i1.text()),
-            float(self._ui.i2.text()),
-            float(self._ui.i3.text()),
-            float(self._ui.i4.text()),
-            float(self._ui.i5.text()),
-            float(self._ui.i6.text()),
-            float(self._ui.i7.text()),
-            float(self._ui.i8.text()),
-            float(self._ui.i9.text()),
-            float(self._ui.i10.text()),
-            float(self._ui.i11.text()),
-            float(self._ui.i12.text()),
-            float(self._ui.i13.text())
+            str(self._ui.i0_2.text()), float(self._ui.i1.text()),
+            float(self._ui.i2.text()), float(self._ui.i3.text()),
+            float(self._ui.i4.text()), float(self._ui.i5.text()),
+            float(self._ui.i6.text()), float(self._ui.i7.text()),
+            float(self._ui.i8.text()), float(self._ui.i9.text()),
+            float(self._ui.i10.text()), float(self._ui.i11.text()),
+            float(self._ui.i12.text()), float(self._ui.i13.text())
         )
 
-        # call MachineLearning method in House object and then set the prediction into the FrontEnd
+        # call MachineLearning method in House object and then set the prediction output
         predictionFloat64 = house.getLinearPrediction()
         predictionFloat = "{:.2f}".format(predictionFloat64)
         self.DB.insert(house)
@@ -160,14 +156,11 @@ class Ui(QtWidgets.QMainWindow):
         self._graph2()
 
         # gather the scatter plot for the user's house and reset the graph
-        self._userHouseSpecs = [
-            house.houseSpecs[0],
-            house.houseSpecs[6],
-            house.houseSpecs[10],
-            house.houseSpecs[9],
-            house.houseSpecs[5],
-            float(predictionFloat)
-        ]
+        self._userHouseSpecs = [house.houseSpecs[0],
+                                house.houseSpecs[6], house.houseSpecs[10],
+                                house.houseSpecs[9], house.houseSpecs[5],
+                                float(predictionFloat)
+                                ]
         self._graph3()
 
     # switches the scatter plot to the selected feature
@@ -178,33 +171,36 @@ class Ui(QtWidgets.QMainWindow):
     # loads the data from the saved house in the database
     def _loadMethod(self):
         salesId = self._ui.savedHouses.currentText()
-        house = self.DB.select(salesId)
-        print(house)
-        self._ui.i0_2.setText(str(house[1]))
-        self._ui.i1.setText(str(house[2]))
-        self._ui.i2.setText(str(house[3]))
-        self._ui.i3.setText(str(house[4]))
-        self._ui.i4.setText(str(house[5]))
-        self._ui.i5.setText(str(house[6]))
-        self._ui.i6.setText(str(house[7]))
-        self._ui.i7.setText(str(house[8]))
-        self._ui.i8.setText(str(house[9]))
-        self._ui.i9.setText(str(house[10]))
-        self._ui.i10.setText(str(house[11]))
-        self._ui.i11.setText(str(house[12]))
-        self._ui.i12.setText(str(house[13]))
-        self._ui.i13.setText(str(house[14]))
-        self._predictMethod()
-        self._selectFeatureMethod()
+        if not (salesId == ''):
+            house = self.DB.select(salesId)
+            print(house)
+            self._ui.i0_2.setText(str(house[1]))
+            self._ui.i1.setText(str(house[2]))
+            self._ui.i2.setText(str(house[3]))
+            self._ui.i3.setText(str(house[4]))
+            self._ui.i4.setText(str(house[5]))
+            self._ui.i5.setText(str(house[6]))
+            self._ui.i6.setText(str(house[7]))
+            self._ui.i7.setText(str(house[8]))
+            self._ui.i8.setText(str(house[9]))
+            self._ui.i9.setText(str(house[10]))
+            self._ui.i10.setText(str(house[11]))
+            self._ui.i11.setText(str(house[12]))
+            self._ui.i12.setText(str(house[13]))
+            self._ui.i13.setText(str(house[14]))
+            # call the predict method and the scatter plot for the loaded data to reset
+            self._predictMethod()
+            self._selectFeatureMethod()
 
-    # handler method to delete a house from the saved houses list
+    # handler method to delete a house from the houses table
     def _deleteMethod(self):
         salesId = self._ui.savedHouses.currentText()
-        self.DB.delete(salesId)
-        self.savedHousesComboBox()
+        if not (salesId == ''):
+            self.DB.delete(salesId)
+            self.savedHousesComboBox()
 
 
-# create app and window objects and then open FrontEnd
+# create app and window objects and then open app
 app = QtWidgets.QApplication(sys.argv)
 window = Ui()
 window.setWindowTitle("Real Estate Price Estimator")

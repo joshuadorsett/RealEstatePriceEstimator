@@ -66,7 +66,7 @@ QPushButton {
       <item>
        <widget class="QLabel" name="l0">
         <property name="text">
-         <string>Enter a unique Identidier</string>
+         <string>Unique Identifier</string>
         </property>
        </widget>
       </item>
@@ -289,7 +289,7 @@ QPushButton {
        <x>290</x>
        <y>40</y>
        <width>1321</width>
-       <height>591</height>
+       <height>561</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -402,6 +402,14 @@ QPushButton {
       <string>Saved House Predictions</string>
      </property>
     </widget>
+    <zorder>widget_3</zorder>
+    <zorder>verticalLayoutWidget_2</zorder>
+    <zorder>horizontalLayoutWidget_2</zorder>
+    <zorder>horizontalLayoutWidget_4</zorder>
+    <zorder>label</zorder>
+    <zorder>prediction</zorder>
+    <zorder>savedHouses</zorder>
+    <zorder>label_3</zorder>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
