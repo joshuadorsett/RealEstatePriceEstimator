@@ -1,6 +1,9 @@
 from PyQt5 import QtWidgets
 import pandas as pd
 import sys
+
+from PyQt5.QtWidgets import QMessageBox
+
 import DAO.dataBase
 from pandas import DataFrame
 
@@ -114,35 +117,55 @@ class Ui(QtWidgets.QMainWindow):
         # find and assign text fields
         self._houseAddress = self.findChild(QtWidgets.QLineEdit, "i0")
 
+    def messageBoxForInputs(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Invalid Inputs.")
+        msg.setText("Please input numbers in all fields.")
+        msg.setStyleSheet("background-color: 'white';")
+        msg.exec()
 
     def _predictMethod(self):
         if (self._ui.i0_2.text()) == '':
+            self.messageBoxForInputs()
             return
         if not (not ((self._ui.i1.text()) == '') and (_is_float(self._ui.i1.text()))):
+            self.messageBoxForInputs()
             return
         if not (not ((self._ui.i2.text()) == '') and (_is_float(self._ui.i2.text()))):
+            self.messageBoxForInputs()
             return
         if not (not ((self._ui.i3.text()) == '') and (_is_float(self._ui.i3.text()))):
+            self.messageBoxForInputs()
             return
         if not (not ((self._ui.i4.text()) == '') and (_is_float(self._ui.i4.text()))):
+            self.messageBoxForInputs()
             return
         if not (not ((self._ui.i5.text()) == '') and (_is_float(self._ui.i5.text()))):
+            self.messageBoxForInputs()
             return
         if not (not ((self._ui.i6.text()) == '') and (_is_float(self._ui.i6.text()))):
+            self.messageBoxForInputs()
             return
         if not (not ((self._ui.i7.text()) == '') and (_is_float(self._ui.i7.text()))):
+            self.messageBoxForInputs()
             return
         if not (not ((self._ui.i8.text()) == '') and (_is_float(self._ui.i8.text()))):
+            self.messageBoxForInputs()
             return
         if not (not ((self._ui.i9.text()) == '') and (_is_float(self._ui.i9.text()))):
+            self.messageBoxForInputs()
             return
         if not (not ((self._ui.i10.text()) == '') and (_is_float(self._ui.i10.text()))):
+            self.messageBoxForInputs()
             return
         if not (not ((self._ui.i11.text()) == '') and (_is_float(self._ui.i11.text()))):
+            self.messageBoxForInputs()
             return
         if not (not ((self._ui.i12.text()) == '') and (_is_float(self._ui.i12.text()))):
+            self.messageBoxForInputs()
             return
         if not (not ((self._ui.i13.text()) == '') and (_is_float(self._ui.i13.text()))):
+            self.messageBoxForInputs()
             return
         # create a new house object wit input text
         house = House(
@@ -221,6 +244,8 @@ class Ui(QtWidgets.QMainWindow):
 app = QtWidgets.QApplication(sys.argv)  # Create an instance of app
 
 window = Ui()  # create instance of Ui
+
+window.setWindowTitle("Real Estate Price Estimator")
 
 app.exec()  # execute app
 
