@@ -10,7 +10,7 @@ class DB:
             'Houses',
             self.meta,
             Column('id', Integer, primary_key=True),
-            Column('address', String),
+            Column('salesid', String),
             Column('crim', Float),
             Column('zn', Float),
             Column('indus', Float),
@@ -31,42 +31,42 @@ class DB:
     # insert a new house into the house table if its a new address
     # update a previous house if address is already in house table
     def insert(self, house):
-        selAddress = self.select(house.address)
-        if selAddress is None:
+        selSalesId = self.select(house.salesId)
+        if selSalesId is None:
             ins = self.houses.insert().values(
-                address=house.address,
-                crim=house.houseSpecs[0][0],
-                zn=house.houseSpecs[0][1],
-                indus=house.houseSpecs[0][2],
-                chas=house.houseSpecs[0][3],
-                nox=house.houseSpecs[0][4],
-                rm=house.houseSpecs[0][5],
-                age=house.houseSpecs[0][6],
-                dis=house.houseSpecs[0][7],
-                rad=house.houseSpecs[0][8],
-                tax=house.houseSpecs[0][9],
-                ptratio=house.houseSpecs[0][10],
-                b=house.houseSpecs[0][11],
-                lstat=house.houseSpecs[0][12]
+                salesid=house.salesId,
+                crim=house.houseSpecs[0],
+                zn=house.houseSpecs[1],
+                indus=house.houseSpecs[2],
+                chas=house.houseSpecs[3],
+                nox=house.houseSpecs[4],
+                rm=house.houseSpecs[5],
+                age=house.houseSpecs[6],
+                dis=house.houseSpecs[7],
+                rad=house.houseSpecs[8],
+                tax=house.houseSpecs[9],
+                ptratio=house.houseSpecs[10],
+                b=house.houseSpecs[11],
+                lstat=house.houseSpecs[12]
             )
             self.conn.execute(ins)
         else:
             upd = self.houses.update().values(
-                address=house.address,
-                crim=house.houseSpecs[0][0],
-                zn=house.houseSpecs[0][1],
-                indus=house.houseSpecs[0][2],
-                chas=house.houseSpecs[0][3],
-                nox=house.houseSpecs[0][4],
-                rm=house.houseSpecs[0][5],
-                age=house.houseSpecs[0][6],
-                dis=house.houseSpecs[0][7],
-                rad=house.houseSpecs[0][8],
-                tax=house.houseSpecs[0][9],
-                ptratio=house.houseSpecs[0][10],
-                b=house.houseSpecs[0][11],
-                lstat=house.houseSpecs[0][12]
-            ).where(self.houses.c.address == house.address)
+                salesid=house.salesId,
+                crim=house.houseSpecs[0],
+                zn=house.houseSpecs[1],
+                indus=house.houseSpecs[2],
+                chas=house.houseSpecs[3],
+                nox=house.houseSpecs[4],
+                rm=house.houseSpecs[5],
+                age=house.houseSpecs[6],
+                dis=house.houseSpecs[7],
+                rad=house.houseSpecs[8],
+                tax=house.houseSpecs[9],
+                ptratio=house.houseSpecs[10],
+                b=house.houseSpecs[11],
+                lstat=house.houseSpecs[12]
+            ).where(self.houses.c.salesid == house.salesId)
             self.conn.execute(upd)
             print("already in DB")
 
@@ -77,12 +77,12 @@ class DB:
         return r.fetchall()
 
     # return a specific row from house table
-    def select(self, address):
-        sel = self.houses.select().where(self.houses.c.address.like(address))
+    def select(self, salesid):
+        sel = self.houses.select().where(self.houses.c.salesid.like(salesid))
         r = self.conn.execute(sel)
         return r.fetchone()
 
     # delete a specific row from the house table
-    def delete(self, address):
-        dele = self.houses.delete().where(self.houses.c.address.like(address))
+    def delete(self, salesid):
+        dele = self.houses.delete().where(self.houses.c.salesid.like(salesid))
         self.conn.execute(dele)

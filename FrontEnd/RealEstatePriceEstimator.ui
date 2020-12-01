@@ -59,14 +59,14 @@ QPushButton {
        <x>20</x>
        <y>110</y>
        <width>251</width>
-       <height>751</height>
+       <height>771</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QLabel" name="l0">
         <property name="text">
-         <string>Sale ID / Street Address</string>
+         <string>Enter a unique Identidier</string>
         </property>
        </widget>
       </item>
@@ -331,32 +331,19 @@ QPushButton {
      <property name="geometry">
       <rect>
        <x>270</x>
-       <y>630</y>
+       <y>550</y>
        <width>1381</width>
-       <height>461</height>
+       <height>541</height>
       </rect>
      </property>
      <widget class="QComboBox" name="selectFeature">
       <property name="geometry">
        <rect>
-        <x>260</x>
-        <y>10</y>
+        <x>180</x>
+        <y>50</y>
         <width>221</width>
         <height>21</height>
        </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="selectFeatureButton">
-      <property name="geometry">
-       <rect>
-        <x>490</x>
-        <y>10</y>
-        <width>101</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Select Feature</string>
       </property>
      </widget>
     </widget>

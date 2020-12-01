@@ -27,7 +27,7 @@ class Ui(QtWidgets.QMainWindow):
     # secondary constructor for setting up the Ui
     def _setUpUi(self):
         self._userHouseSpecs = None
-        self.setFixedSize(1650, 1040)
+        self.setFixedSize(1570, 1030)
         self._ui = Ui_MainWindow()
         self._ui.setupUi(self)
         self._actionHandling()
@@ -102,8 +102,7 @@ class Ui(QtWidgets.QMainWindow):
     def _actionHandling(self):
         # find and assign buttons
         self._ui.predict.clicked.connect(self._predictMethod)
-        self._ui.selectFeatureButton.clicked.connect(self._selectFeatureMethod)
-        # self._ui.save.clicked.connect(self._saveMethod)
+        self._ui.selectFeature.activated.connect(self._selectFeatureMethod)
         self._ui.load.clicked.connect(self._loadMethod)
         self._ui.dele.clicked.connect(self._deleteMethod)
         # find and assign text fields
@@ -162,11 +161,11 @@ class Ui(QtWidgets.QMainWindow):
 
         # gather the scatter plot for the user's house and reset the graph
         self._userHouseSpecs = [
-            house.houseSpecs[0][0],
-            house.houseSpecs[0][6],
-            house.houseSpecs[0][10],
-            house.houseSpecs[0][9],
-            house.houseSpecs[0][5],
+            house.houseSpecs[0],
+            house.houseSpecs[6],
+            house.houseSpecs[10],
+            house.houseSpecs[9],
+            house.houseSpecs[5],
             float(predictionFloat)
         ]
         self._graph3()
@@ -178,8 +177,8 @@ class Ui(QtWidgets.QMainWindow):
 
     # loads the data from the saved house in the database
     def _loadMethod(self):
-        selAddress = self._ui.savedHouses.currentText()
-        house = self.DB.select(selAddress)
+        salesId = self._ui.savedHouses.currentText()
+        house = self.DB.select(salesId)
         print(house)
         self._ui.i0_2.setText(str(house[1]))
         self._ui.i1.setText(str(house[2]))
@@ -200,8 +199,8 @@ class Ui(QtWidgets.QMainWindow):
 
     # handler method to delete a house from the saved houses list
     def _deleteMethod(self):
-        selAddress = self._ui.savedHouses.currentText()
-        self.DB.delete(selAddress)
+        salesId = self._ui.savedHouses.currentText()
+        self.DB.delete(salesId)
         self.savedHousesComboBox()
 
 
