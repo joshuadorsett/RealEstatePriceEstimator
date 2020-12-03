@@ -86,3 +86,6 @@ class DB:
     def delete(self, salesid):
         dele = self.houses.delete().where(self.houses.c.salesid.like(salesid))
         self.conn.execute(dele)
+
+# create access object
+dataBase = DB()
