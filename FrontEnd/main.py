@@ -43,8 +43,8 @@ class Ui(QtWidgets.QMainWindow):
         features = ["Age of House", "Policing Rate", "Pupil-Teacher Ratio", "Property-Tax Rate", "Number of Rooms"]
         self._ui.selectFeature.addItems(features)
 
-    # it first gathers all the saved houses in the database and puts them into a list
-    # then sets that list into the combo box
+    # gathers all the saved houses in the database and puts them into a list
+    # then sets list into the combo box
     def savedHousesComboBox(self):
         self._ui.savedHouses.clear()
         sel = self.DB.selectAll()
