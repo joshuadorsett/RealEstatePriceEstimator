@@ -6,7 +6,6 @@ import matplotlib
 # Ensure using PyQt5 backend
 matplotlib.use('QT5Agg')
 
-
 # class to create figure
 class MplCanvas(Canvas):
     def __init__(self):
@@ -16,7 +15,6 @@ class MplCanvas(Canvas):
         Canvas.__init__(self, self.figure)
         Canvas.setSizePolicy(self, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         Canvas.updateGeometry(self)
-
 
 # Matplotlib widget
 class MplWidget(QtWidgets.QWidget):
