@@ -27,7 +27,6 @@ class DB:
         )
         self.meta.create_all(self.db)
         self.conn = self.db.connect()
-
     # insert a new house into the house table if its a new address
     # update a previous house if address is already in house table
     def insert(self, house):
@@ -50,6 +49,7 @@ class DB:
                 lstat=house.houseSpecs[12]
             )
             self.conn.execute(ins)
+
         else:
             upd = self.houses.update().values(
                 salesid=house.salesId,

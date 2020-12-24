@@ -31,8 +31,6 @@ def messageBoxForFloatInputs(text):
 def inputNotValid(text):
     if not (not (text == '') and (is_float(text))):
         messageBoxForFloatInputs(text)
-        return True
-
 
 # opens a message box concerning the first input field which does not have to be a digit
 def messageBoxForIDInput():
